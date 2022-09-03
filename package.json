@@ -1,0 +1,14 @@
+{
+  "name": "node-npm",
+  "version": "1.0.0",
+  "description": "node project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Choi",
+  "license": "ISC",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1"
+  }
+}
