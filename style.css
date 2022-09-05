@@ -36,6 +36,7 @@ h1 {
   font-size: 3rem;
 }
 
+
 ul {
   list-style-type: none;
   margin: 0;
@@ -50,6 +51,7 @@ ul {
   display: flex;
   align-items: flex-start;
 }
+
 
 /* Columns */
 .drag-column {
@@ -126,6 +128,8 @@ ul {
 /* Drag and Drop */
 .over {
   padding: 50px 10px;
+  border-radius: 10px;
+  margin: 0 10px;
 }
 
 .drag-item-list {
