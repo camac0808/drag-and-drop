@@ -19,6 +19,7 @@ let onHoldListArray = [];
 let listArrays = [];
 
 // get items on localStorage
+// console.log(localStorage.getItem("backlogItems"), localStorage.backlogItems) = same value
 function getColumns() {
   if (localStorage.getItem("backlogItems")) {
     backlogListArray = JSON.parse(localStorage.backlogItems);
@@ -26,15 +27,12 @@ function getColumns() {
     completeListArray = JSON.parse(localStorage.completeItems);
     onHoldListArray = JSON.parse(localStorage.onHoldItems);
   } else {
-    // array value
     backlogListArray = ["Release course", "Sit back"];
     progressListArray = ["Work on projects", "Listen to music"];
     completeListArray = ["Having yourself", "Life is better"];
     onHoldListArray = ["Learn like a professional"];
   }
 }
-
-// console.log(localStorage.getItem("backlogItems"), localStorage.backlogItems) = same value
 
 // Set localstorage Arrays
 function setColumns() {
@@ -44,6 +42,8 @@ function setColumns() {
     localStorage.setItem(`${arrayName}Items`, JSON.stringify(listArrays[index]));
   });
 }
+
+
 
 // Create DOM element for each list item
 function createElement(columnList, columnNum, item, index) {
@@ -63,6 +63,10 @@ function createElement(columnList, columnNum, item, index) {
 
 // Update columns in DOM
 function updateDOM() {
+  // Check localstorage once
+  if (!updatedOnLoad) {
+    getColumns();
+  }
   backlogList.textContent = "";
   backlogListArray.forEach((item, index) => {
     createElement(backlogList, 0, item, index);
@@ -88,9 +92,19 @@ let draggedItem;
 let currentColumn;
 
 // drag start function
+// drag한 요소를 drop 함수 안에 appendChild한다
 function drag(e) {
   draggedItem = e.target;
   console.log(draggedItem);
+}
+
+// drag enter element
+function dragEnter(columnNum) {
+  listColumns.forEach((column) => {
+    column.classList.remove("over");
+  });
+  currentColumn = columnNum;
+  listColumns[currentColumn].classList.add("over");
 }
 
 // dropping item in column
@@ -99,6 +113,7 @@ function drop(e) {
   listColumns.forEach((column) => {
     column.classList.remove("over");
   });
+  // e.target으로 하면 li 안에도 들어가는 현상이 나타난다
   const parent = listColumns[currentColumn];
   parent.appendChild(draggedItem);
 }
@@ -107,16 +122,34 @@ function allowDrop(e) {
   e.preventDefault();
 }
 
-function dragEnter(columnNum) {
-  listColumns.forEach((column) => {
-    column.classList.remove("over");
-  })
-
-  currentColumn = columnNum;
-  listColumns[currentColumn].classList.add("over");
+// Add to column
+function addColumn(columnNum) {
+  const inputText = addItems[columnNum].textContent;
+  const selectedArray = listArrays[columnNum];
+  if (inputText) {
+    selectedArray.push(inputText);
+  }
+  addItems[columnNum].textContent = "";
+  setColumns();
+  getColumns();
+  updateDOM();
 }
 
+// show input button
+function showInputBox(columnNum) {
+  console.log(columnNum);
+  addBtns[columnNum].style.visibility = "hidden";
+  saveItemBtns[columnNum].style.display = "flex";
+  addItemContainers[columnNum].style.display = "flex";
+}
 
+// hide input button
+function hideInputBox(columnNum) {
+  addBtns[columnNum].style.visibility = "visible";
+  saveItemBtns[columnNum].style.display = "none";
+  addItemContainers[columnNum].style.display = "none";
+  addColumn(columnNum);
+}
 
 getColumns();
 setColumns();
