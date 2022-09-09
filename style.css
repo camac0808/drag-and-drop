@@ -137,6 +137,8 @@ ul {
 }
 
 .drag-item {
+  display: flex;
+  justify-content: space-between; 
   margin: 10px;
   padding: 10px;
   height: fit-content;
@@ -151,6 +153,22 @@ ul {
   outline: none;
   background-color: white;
   color: black;
+}
+
+/* Icons */
+.icon-container {
+  position: absolute;
+  right: 10px;
+}
+
+i {
+  margin-right: 15px;
+  transition: all 0.2s;
+  font-size: 1.1rem;
+}
+
+i:hover {
+  color: gray;
 }
 
 /* Add Button Group */

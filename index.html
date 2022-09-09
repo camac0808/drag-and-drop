@@ -42,6 +42,7 @@
               </div>
             </div>
             <div class="add-container">
+              <!-- input 대신 contenteditable을 넣어주면 input처럼 작동하는 텍스트박스를 만들 수 있다 -->
               <div class="add-item" contenteditable="true"></div>
             </div>
           </li>
@@ -89,32 +90,10 @@
               <div class="add-item" contenteditable="true"></div>
             </div>
           </li>
-          <!-- on-hold -->
-          <li class="drag-column on-hold-column">
-            <span class="header">
-              <h1>On Hold</h1>
-            </span>
-
-            <div id="on-hold-content">
-              <ul class="drag-item-list" id="on-hold-list"></ul>
-            </div>
-            <div class="add-btn-group">
-              <div class="add-btn" onclick="showInputBox(3)">
-                <span class="plus-sign"><i class="fas fa-plus"></i></span>
-                <span>Add Item</span>
-              </div>
-              <div class="add-btn solid" onclick="hideInputBox(3)">
-                <span>Save Item</span>
-              </div>
-            </div>
-            <div class="add-container">
-              <div class="add-item" contenteditable="true"></div>
-            </div>
-          </li>
         </ul>
       </main>
     </div>
-
+    
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
